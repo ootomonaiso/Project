@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2から20進数数えるマン</title>
+</head>
+<body>
+
+<div id="counters"></div>
+
+<script>
+function createCounter(base) {
+    let count = 0;
+
+    const counterElement = document.createElement('div');
+    counterElement.textContent = `${base}進数: ${count.toString(base)}`;
+    document.getElementById('counters').appendChild(counterElement);
+
+    function updateCounter() {
+        counterElement.textContent = `${base}進数: ${count.toString(base)}`;
+        count++;
+    }
+
+    setInterval(updateCounter, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    for (let base = 2; base <= 62; base++) {
+        createCounter(base);
+    }
+});
+</script>
+
+</body>
+</html>

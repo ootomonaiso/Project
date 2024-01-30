@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>26進数をアルファベットに変換</title>
+</head>
+<body>
+
+<label for="inputNumber">26進数を入力:</label>
+<input type="text" id="inputNumber" placeholder="数字を入力">
+<button onclick="convertToAlphabet()">変換</button>
+
+<p id="result">変換結果: </p>
+
+<script>
+function convertToAlphabet() {
+  // 入力された26進数の文字列を取得
+  var inputNumber = document.getElementById("inputNumber").value;
+
+  // 26進数をアルファベットに変換する関数
+  function convertToAlphabetHelper(num) {
+    var result = "";
+    while (num > 0) {
+      // 余りを求めてアルファベットに変換し、結果の文字列に追加
+      result = String.fromCharCode((num - 1) % 26 + 65) + result;
+      num = Math.floor((num - 1) / 26);
+    }
+    return result;
+  }
+
+  // 入力された26進数を数値に変換
+  var numericValue = parseInt(inputNumber, 26);
+
+  // アルファベットに変換
+  var result = convertToAlphabetHelper(numericValue);
+
+  // 結果を表示
+  document.getElementById("result").innerHTML = "変換結果: " + result;
+}
+</script>
+
+<h2>10進数から26進数とアルファベットへの変換対応表</h2>
+
+<table>
+  <tr>
+    <th>10進数</th>
+    <th>26進数</th>
+    <th>アルファベット</th>
+  </tr>
+  <!-- AからZまでの行を生成 -->
+  <!-- 10進数: 0-25, 26進数: A-P, アルファベット: A-Z -->
+  <!-- 行の数は26行 -->
+  <!-- 列はそれぞれ10進数、26進数、アルファベット -->
+  <!-- ループを使用して生成 -->
+  <script>
+    for (let i = 0; i < 26; i++) {
+      document.write("<tr>");
+      document.write("<td>" + i + "</td>");
+      document.write("<td>" + i.toString(26).toUpperCase() + "</td>");
+      document.write("<td>" + String.fromCharCode(65 + i) + "</td>");
+      document.write("</tr>");
+    }
+  </script>
+</table>
+</body>
+</html>

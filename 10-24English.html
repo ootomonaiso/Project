@@ -18,7 +18,16 @@ function convertToAlphabet() {
   // 入力された26進数の文字列を取得
   var inputNumber = document.getElementById("inputNumber").value;
 
-  // 26進数をアルファベットに変換する関数
+  // 26進数を10進数に変換する関数
+  function convertToDecimal(num26) {
+    var decimalValue = 0;
+    for (var i = 0; i < num26.length; i++) {
+      decimalValue = decimalValue * 26 + (num26.charCodeAt(i) - 65 + 1);
+    }
+    return decimalValue;
+  }
+
+  // 10進数をアルファベットに変換する関数
   function convertToAlphabetHelper(num) {
     var result = "";
     while (num > 0) {
@@ -29,8 +38,8 @@ function convertToAlphabet() {
     return result;
   }
 
-  // 入力された26進数を数値に変換
-  var numericValue = parseInt(inputNumber, 26);
+  // 入力された26進数を10進数に変換
+  var numericValue = convertToDecimal(inputNumber.toUpperCase());
 
   // アルファベットに変換
   var result = convertToAlphabetHelper(numericValue);
@@ -40,28 +49,5 @@ function convertToAlphabet() {
 }
 </script>
 
-<h2>10進数から26進数とアルファベットへの変換対応表</h2>
-
-<table>
-  <tr>
-    <th>10進数</th>
-    <th>26進数</th>
-    <th>アルファベット</th>
-  </tr>
-  <!-- AからZまでの行を生成 -->
-  <!-- 10進数: 0-25, 26進数: A-P, アルファベット: A-Z -->
-  <!-- 行の数は26行 -->
-  <!-- 列はそれぞれ10進数、26進数、アルファベット -->
-  <!-- ループを使用して生成 -->
-  <script>
-    for (let i = 0; i < 26; i++) {
-      document.write("<tr>");
-      document.write("<td>" + i + "</td>");
-      document.write("<td>" + i.toString(26).toUpperCase() + "</td>");
-      document.write("<td>" + String.fromCharCode(65 + i) + "</td>");
-      document.write("</tr>");
-    }
-  </script>
-</table>
 </body>
 </html>

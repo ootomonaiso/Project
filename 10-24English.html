@@ -49,5 +49,31 @@ function convertToAlphabet() {
 }
 </script>
 
+  
+<table>
+  <tr>
+    <th>26進数</th>
+    <th>アルファベット</th>
+  </tr>
+  <!-- 26進数: 1-9, A-Z -->
+  <!-- 行の数は35行 -->
+  <!-- 列はそれぞれ26進数、アルファベット -->
+  <!-- ループを使用して生成 -->
+  <script>
+    for (let i = 1; i <= 9; i++) {
+      document.write("<tr>");
+      document.write("<td>" + i.toString(26).toUpperCase() + "</td>");
+      document.write("<td>" + String.fromCharCode(64 + i) + "</td>");
+      document.write("</tr>");
+    }
+
+    for (let i = 10; i <= 35; i++) {
+      document.write("<tr>");
+      document.write("<td>" + i.toString(26).toUpperCase() + "</td>");
+      document.write("<td>" + String.fromCharCode(55 + i) + "</td>");
+      document.write("</tr>");
+    }
+  </script>
+</table>
 </body>
 </html>
